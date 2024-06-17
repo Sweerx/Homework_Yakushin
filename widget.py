@@ -47,5 +47,8 @@ def mask_account_card(text: str) -> str:
     return num_mask_card
 
 
-def get_data():
-    pass
+def get_data(text: str) -> str:
+    """Функция прнимает зашифрованню строку(2018-07-11T02:26:18.671407) и возвращает дату"""
+    new_string = text.split("-")
+    data_string = new_string[2][0:2] + "." + new_string[1] + "." + new_string[0]
+    return data_string
