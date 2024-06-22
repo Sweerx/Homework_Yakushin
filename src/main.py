@@ -1,4 +1,4 @@
-from src.processing import filter_for_state
+from src.processing import filter_by_state
 from src.widget import get_data, mask_account_card
 
 if __name__ == "__main__":
@@ -16,5 +16,5 @@ list_one = [
     {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
     {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
 ]
-print(filter_for_state(list_one))
-print(filter_for_state(list_one, "CANCELED"))
+print(filter_by_state(list_one))
+print(filter_by_state(list_one, "CANCELED"))

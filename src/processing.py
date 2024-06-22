@@ -1,4 +1,4 @@
-def filter_for_state(list_key: list, state: str = "EXECUTED") -> list:
+def filter_by_state(list_key: list, state: str = "EXECUTED") -> list:
     """Функция принимает на вход список словарей и значение для ключа state
     (опциональный параметр со значением по умолчанию EXECUTED)
     и возвращает новый список, содержащий только те словари,
