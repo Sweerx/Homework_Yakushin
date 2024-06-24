@@ -12,25 +12,26 @@ def mask_account_card(text: str) -> str:
         if el.isdigit():
             card_number.append(el)
 
-    card_number_new = ''
+    card_number_new = ""
 
-    if name_cards[0] in ["Visa", 'Maestro', 'MasterCard']:
-        if len(name_cards) >= 2 and name_cards[1] in ['Platinum', 'Classic']:
+    if name_cards[0] in ["Visa", "Maestro", "MasterCard"]:
+        if len(name_cards) >= 2 and name_cards[1] in ["Platinum", "Classic"]:
             for el in card_number:
                 card_number_new += el
-            mask_card_num = f'{card_number_new[:4]} {card_number_new[4:6]}** **** {card_number_new[-4:]}'
-            return f'{name_cards[0]} {name_cards[1]} {mask_card_num}'
+            mask_card_num = f"{card_number_new[:4]} {card_number_new[4:6]}** **** {card_number_new[-4:]}"
+            return f"{name_cards[0]} {name_cards[1]} {mask_card_num}"
         else:
             for el in card_number:
                 card_number_new += el
-            mask_card_num = f'{card_number_new[:4]} {card_number_new[4:6]}** **** {card_number_new[-4:]}'
-            return f'{name_cards[0]} {mask_card_num}'
-    elif name_cards[0] in ['Счет']:
-        account_num = ''
+            mask_card_num = f"{card_number_new[:4]} {card_number_new[4:6]}** **** {card_number_new[-4:]}"
+            return f"{name_cards[0]} {mask_card_num}"
+    elif name_cards[0] in ["Счет"]:
+        account_num = ""
         for el in card_number:
             account_num += el
-        mask_account = f'**{account_num[-4:]}'
+        mask_account = f"**{account_num[-4:]}"
         return name_cards[0] + " " + mask_account
+    return ""
 
 
 def get_data(text: str) -> str:
