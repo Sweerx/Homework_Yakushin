@@ -1,4 +1,4 @@
-def filter_by_state(list_of_dist: list, state: str = "EXECUTED") -> list:
+def filter_by_state(list_of_dist: list[dict], state: str = "EXECUTED") -> list[dict]:
     """Функция принимает на вход список словарей и значение для ключа state
     (опциональный параметр со значением по умолчанию EXECUTED)
     и возвращает новый список, содержащий только те словари,
@@ -10,7 +10,7 @@ def filter_by_state(list_of_dist: list, state: str = "EXECUTED") -> list:
     return filtered_list
 
 
-def sort_by_date(list_of_dist: list, is_reverse: bool = True) -> list:
+def sort_by_date(list_of_dist: list[dict], is_reverse: bool = True) -> list[dict]:
     """Функция которая принимает на вход список словарей и возвращает новый список,
     в котором исходные словари отсортированы по убыванию даты (ключ date).
     Функция принимает два аргумента, второй необязательный задает порядок сортировки (убывание, возрастание)."""
