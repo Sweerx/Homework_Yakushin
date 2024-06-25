@@ -1,52 +1,36 @@
 def mask_account_card(text: str) -> str:
     """Функция принимает строку с информацией — тип карты/счета и номер карты/счета
     Возвращать исходную строку с замаскированным номером карты/счета."""
-    new_text = text.split()
+    info_card_str = text.split()
     name_cards = []
-    for el in new_text:
+    card_number = []
+    for el in info_card_str:
         if el.isalpha():
             name_cards.append(el)
 
-    if len(new_text) <= 2:
-        num_account_str = new_text[1]
-        num_mask_account = num_account_str[-6:].replace(num_account_str[-6:-4], "*" * 2)
-        return new_text[0] + " " + num_mask_account
+    for el in info_card_str:
+        if el.isdigit():
+            card_number.append(el)
 
-    else:
-        num_card_str = new_text[-1] + new_text[-2] + new_text[-3] + new_text[-4]
-        num_card_one_block = num_card_str[:4]
-        num_card_two_block = num_card_str[4:8].replace(num_card_str[6:8], "*" * 2)
-        num_card_three_block = num_card_str[8:12].replace(num_card_str[8:12], "*" * 4)
-        num_card_four_block = num_card_str[12:16]
+    card_number_new = ""
 
-        if len(name_cards) >= 2:
-            num_mask_card = (
-                name_cards[0]
-                + " "
-                + name_cards[1]
-                + " "
-                + num_card_one_block
-                + " "
-                + num_card_two_block
-                + " "
-                + num_card_three_block
-                + " "
-                + num_card_four_block
-            )
-            return num_mask_card
-        elif len(name_cards) <= 1:
-            num_mask_card = (
-                name_cards[0]
-                + " "
-                + num_card_one_block
-                + " "
-                + num_card_two_block
-                + " "
-                + num_card_three_block
-                + " "
-                + num_card_four_block
-            )
-            return num_mask_card
+    if name_cards[0] in ["Visa", "Maestro", "MasterCard"]:
+        if len(name_cards) >= 2 and name_cards[1] in ["Platinum", "Classic"]:
+            for el in card_number:
+                card_number_new += el
+            mask_card_num = f"{card_number_new[:4]} {card_number_new[4:6]}** **** {card_number_new[-4:]}"
+            return f"{name_cards[0]} {name_cards[1]} {mask_card_num}"
+        else:
+            for el in card_number:
+                card_number_new += el
+            mask_card_num = f"{card_number_new[:4]} {card_number_new[4:6]}** **** {card_number_new[-4:]}"
+            return f"{name_cards[0]} {mask_card_num}"
+    elif name_cards[0] in ["Счет"]:
+        account_num = ""
+        for el in card_number:
+            account_num += el
+        mask_account = f"**{account_num[-4:]}"
+        return name_cards[0] + " " + mask_account
     return ""
 
 
