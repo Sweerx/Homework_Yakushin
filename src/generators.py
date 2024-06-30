@@ -24,6 +24,11 @@ def card_number_generator(start: int, end: int) -> Generator:
     """
     Функция генерирует номер карт в формате XXXX XXXX XXXX XXXX
     """
+    if end < start:
+        cash = start
+        start = end
+        end = cash
+
     for num in range(start, end + 1):
         if len(str(num)) < 16:
             numbers = "0" * (16 - len(str(num))) + str(num)
