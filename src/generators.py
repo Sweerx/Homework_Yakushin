@@ -39,5 +39,5 @@ def card_number_generator(start: int, end: int) -> Generator:
         yield block_number
 
 
-for card_number in card_number_generator(1, 4):
+for card_number in card_number_generator(5436334, 5436330):
     print(card_number)
