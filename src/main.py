@@ -2,7 +2,6 @@ from src.generators import filter_by_currency, transaction_descriptions
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_data, mask_account_card
 
-
 if __name__ == "__main__":
     print(mask_account_card("Visa Platinum 7000 7922 8960 6361"))
     print(mask_account_card("Maestro 1596 8378 6870 5199"))
