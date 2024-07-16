@@ -1,6 +1,8 @@
 from src.generators import filter_by_currency, transaction_descriptions
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_data, mask_account_card
+from src.utils import get_financial_transactions
+from src.external_api import sum_transaction_amount
 
 if __name__ == "__main__":
     print(mask_account_card("Visa Platinum 7000 7922 8960 6361"))
@@ -81,3 +83,10 @@ descriptions = transaction_descriptions(transactions)
 
 for _ in range(5):
     print(next(descriptions))
+
+
+
+print(get_financial_transactions("operations.json"))
+print(sum_transaction_amount(get_financial_transactions("operations.json")[0]))
+print(sum_transaction_amount(get_financial_transactions("operations.json")[1]))
+print(sum_transaction_amount(get_financial_transactions("operations.json")[2]))
