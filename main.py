@@ -1,10 +1,21 @@
 from src.generators import filter_by_currency, transaction_descriptions
+from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_data, mask_account_card
 from src.utils import get_financial_transactions
 from src.external_api import sum_transaction_amount
 
 if __name__ == "__main__":
+    print(get_mask_card_number("Maestro 1596837868705199".split()))
+    print(get_mask_account("Счет 64686473678894779589".split()))
+    print(get_mask_card_number("MasterCard 7158300734726758".split()))
+    print(get_mask_account("Счет 35383033474447895560".split()))
+    print(get_mask_card_number("Visa Classic 6831982476737658".split()))
+    print(get_mask_card_number("Visa Platinum 8990922113665229".split()))
+    print(get_mask_card_number("Visa Gold 5999414228426353".split()))
+    print(get_mask_account("Счет 73654108430135874305".split()))
+
+
     print(mask_account_card("Visa Platinum 7000 7922 8960 6361"))
     print(mask_account_card("Maestro 1596 8378 6870 5199"))
     print(mask_account_card("MasterCard 7158 3007 3472 6758"))
