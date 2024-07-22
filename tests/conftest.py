@@ -51,6 +51,16 @@ def mask_account_num() -> str:
     return "Счет **5560"
 
 
+@pytest.fixture
+def account() -> str:
+    return "Счет 64686473678894779589"
+
+
+@pytest.fixture
+def masked_account() -> str:
+    return "Счет **89"
+
+
 @pytest.fixture()
 def list_of_dist_filter_of_state() -> list[dict]:
     return [
