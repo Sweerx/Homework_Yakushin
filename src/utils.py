@@ -2,6 +2,7 @@ import csv
 import json
 import logging
 import os
+import re
 
 import pandas as pd
 
@@ -43,7 +44,7 @@ def get_financial_transactions(file_name: str) -> list:
             elif file_name.endswith(".xlsx"):
                 logger.info(f"Файл {file_name} формата .xlsx")
                 transaction = pd.read_excel(os.path.join("data/", file_name))
-                list_id_name = transaction.columns.to_list()
+                list_id_name = transaction.columns.to_list()  # преобразовали в список
                 list_for_transaction = []
                 for idx, row in transaction.iterrows():
                     transaction_dict = {}
@@ -59,3 +60,13 @@ def get_financial_transactions(file_name: str) -> list:
     except FileNotFoundError:
         logger.error(f"Файл {file_name} не найден")
         return []
+
+
+def search_transaction_data(transactions: list, search_string: str) -> list:
+    """Функция принимает список словарей с данными о банковских операциях и строку поиска,
+    а возвращает список словарей, у которых в описании есть данная строка."""
+    result = []
+    for transaction in transactions:
+        if "description" in transaction and re.findall(search_string.lower(), transaction["description"].lower()):
+            result.append(transaction)
+    return result

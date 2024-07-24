@@ -37,7 +37,3 @@ def card_number_generator(start: int, end: int) -> Generator:
 
         block_number = f"{numbers[:4]} {numbers[4:8]} {numbers[8:12]} {numbers[12:16]}"
         yield block_number
-
-
-for card_number in card_number_generator(5436334, 5436330):
-    print(card_number)
