@@ -50,6 +50,7 @@ def get_financial_transactions(file_name: str) -> list:
                     transaction_dict = {}
                     for i, el in enumerate(row):
                         transaction_dict[list_id_name[i]] = el
+                        # print(transaction_dict)
                     list_for_transaction.append(transaction_dict)
                 logger.info(f"Файл {file_name} прочитан и преобразуется в список с вложенными словарями")
                 return list_for_transaction
@@ -67,6 +68,6 @@ def search_transaction_data(transactions: list, search_string: str) -> list:
     а возвращает список словарей, у которых в описании есть данная строка."""
     result = []
     for transaction in transactions:
-        if "description" in transaction and re.findall(search_string.lower(), transaction["description"].lower()):
+        if "description" in transaction and re.search(search_string.lower(), str(transaction.get("description")).lower()):
             result.append(transaction)
     return result
