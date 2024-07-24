@@ -3,6 +3,7 @@ import json
 import logging
 import os
 import re
+from collections import Counter
 
 import pandas as pd
 
@@ -68,6 +69,24 @@ def search_transaction_data(transactions: list, search_string: str) -> list:
     а возвращает список словарей, у которых в описании есть данная строка."""
     result = []
     for transaction in transactions:
-        if "description" in transaction and re.search(search_string.lower(), str(transaction.get("description")).lower()):
+        if "description" in transaction and re.search(search_string.lower(), str(transaction["description"]).lower()):
             result.append(transaction)
     return result
+
+
+def sorting_operations_category(transactions: list, categories: list) -> dict:
+    """
+    Функция принимает список словарей с данными о банковских операциях и список категорий операций,
+    и возвращает словарь - категория: количество операций.
+    """
+    list_result = []
+    for transaction in transactions:
+        list_result.append(transaction.get("description"))
+    dict_result = {}
+    count = Counter(list_result)
+    for el in count:
+        if el is None or el == '':
+            continue
+        else:
+            dict_result[el] = count[el]
+    return dict_result
