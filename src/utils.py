@@ -85,7 +85,7 @@ def sorting_operations_category(transactions: list, categories: list) -> dict:
     dict_result = {}
     count = Counter(list_result)
     for el in count:
-        if el is None or el == '':
+        if el is None or el == "":
             continue
         else:
             dict_result[el] = count[el]
