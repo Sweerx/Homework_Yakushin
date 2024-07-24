@@ -1510,3 +1510,46 @@
 25.07.2024 01:52:23 - utils - utils.py - get_financial_transactions - INFO - Файл transactions.csv успешно открыт
 25.07.2024 01:52:23 - utils - utils.py - get_financial_transactions - INFO - Файл transactions.csv формата .csv
 25.07.2024 01:52:23 - utils - utils.py - get_financial_transactions - INFO - Файл transactions.csv прочитан и преобразуется в список с вложенными словарями
+25.07.2024 02:00:23 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл operations.json
+25.07.2024 02:00:23 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно открыт
+25.07.2024 02:00:23 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно десериализован
+25.07.2024 02:05:36 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл operations.json
+25.07.2024 02:05:36 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно открыт
+25.07.2024 02:05:36 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно десериализован
+25.07.2024 02:06:29 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл transactions.csv
+25.07.2024 02:06:29 - utils - utils.py - get_financial_transactions - INFO - Файл transactions.csv успешно открыт
+25.07.2024 02:06:29 - utils - utils.py - get_financial_transactions - INFO - Файл transactions.csv формата .csv
+25.07.2024 02:06:29 - utils - utils.py - get_financial_transactions - INFO - Файл transactions.csv прочитан и преобразуется в список с вложенными словарями
+25.07.2024 02:09:43 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл operations.json
+25.07.2024 02:09:43 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно открыт
+25.07.2024 02:09:43 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно десериализован
+25.07.2024 02:28:58 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл transactions_excel.xlsx
+25.07.2024 02:28:58 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx успешно открыт
+25.07.2024 02:28:58 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx формата .xlsx
+25.07.2024 02:28:59 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx прочитан и преобразуется в список с вложенными словарями
+25.07.2024 02:30:38 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл transactions_excel.xlsx
+25.07.2024 02:30:38 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx успешно открыт
+25.07.2024 02:30:38 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx формата .xlsx
+25.07.2024 02:30:38 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx прочитан и преобразуется в список с вложенными словарями
+25.07.2024 02:32:31 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл transactions_excel.xlsx
+25.07.2024 02:32:31 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx успешно открыт
+25.07.2024 02:32:31 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx формата .xlsx
+25.07.2024 02:32:31 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx прочитан и преобразуется в список с вложенными словарями
+25.07.2024 02:34:55 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл transactions_excel.xlsx
+25.07.2024 02:34:55 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx успешно открыт
+25.07.2024 02:34:55 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx формата .xlsx
+25.07.2024 02:34:55 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx прочитан и преобразуется в список с вложенными словарями
+25.07.2024 02:37:38 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл transactions_excel.xlsx
+25.07.2024 02:37:38 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx успешно открыт
+25.07.2024 02:37:38 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx формата .xlsx
+25.07.2024 02:37:38 - utils - utils.py - get_financial_transactions - INFO - Файл transactions_excel.xlsx прочитан и преобразуется в список с вложенными словарями
+25.07.2024 02:38:16 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл operations.json
+25.07.2024 02:38:16 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно открыт
+25.07.2024 02:38:16 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно десериализован
+25.07.2024 02:40:46 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл operations.json
+25.07.2024 02:40:46 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно открыт
+25.07.2024 02:40:46 - utils - utils.py - get_financial_transactions - INFO - Файл operations.json успешно десериализован
+25.07.2024 02:41:33 - utils - utils.py - get_financial_transactions - INFO - Попытка открыть файл transactions.csv
+25.07.2024 02:41:33 - utils - utils.py - get_financial_transactions - INFO - Файл transactions.csv успешно открыт
+25.07.2024 02:41:33 - utils - utils.py - get_financial_transactions - INFO - Файл transactions.csv формата .csv
+25.07.2024 02:41:33 - utils - utils.py - get_financial_transactions - INFO - Файл transactions.csv прочитан и преобразуется в список с вложенными словарями

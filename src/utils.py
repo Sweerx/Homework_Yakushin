@@ -74,7 +74,7 @@ def search_transaction_data(transactions: list, search_string: str) -> list:
     return result
 
 
-def sorting_operations_category(transactions: list, categories: list) -> dict:
+def sorting_operations_category_and_count(transactions: list, categories: list) -> dict:
     """
     Функция принимает список словарей с данными о банковских операциях и список категорий операций,
     и возвращает словарь - категория: количество операций.

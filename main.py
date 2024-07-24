@@ -1,4 +1,6 @@
-from src.utils import get_financial_transactions, search_transaction_data, sorting_operations_category
+from src.generators import filter_by_currency
+from src.processing import sort_by_date, filter_by_state
+from src.utils import get_financial_transactions, search_transaction_data, sorting_operations_category_and_count
 import os
 
 
@@ -65,7 +67,9 @@ def main():
             )
             continue
 
+
     print(f'Отсортировать операции по дате? Да/Нет\n')
+
 
     while True:
 
@@ -75,11 +79,15 @@ def main():
         user_choice_sort_date = input('').lower()
 
         if user_choice_sort_date == status_sort_yes_date:
+            is_sort_by_date = True
             break
         elif user_choice_sort_date == status_sort_no_date:
+            is_sort_by_date = False
             break
         else:
             print(f'\nВыберите Да или Нет\n')
+
+    is_sort_by_date: bool
 
     print(f'\nОтсортировать по возрастанию или по убыванию?\n(по возрастанию/по убыванию)\n')
 
@@ -91,12 +99,15 @@ def main():
         user_choice_sort_ascending_or_descending = input('').lower()
 
         if user_choice_sort_ascending_or_descending == status_sort_ascending:
+            descending = False
             break
         elif user_choice_sort_ascending_or_descending == status_sort_descending:
+            descending = True
             break
         else:
             print(f'\nВыберите по возрастанию/по убыванию\n')
 
+    descending: bool
 
     print(f'\nВыводить только рублевые тразакции? Да/Нет\n')
 
@@ -108,11 +119,15 @@ def main():
         user_choice_transaction_only_rub = input('').lower()
 
         if user_choice_transaction_only_rub == transaction_only_rub_yes:
+            is_only_rub_transaction = True
             break
         elif user_choice_sort_date == transaction_only_rub_no:
+            is_only_rub_transaction = False
             break
         else:
             print(f'\nВыберите Да или Нет\n')
+
+    is_only_rub_transaction: bool
 
     print(f'\nОтфильтровать список транзакций по определенному слову в описании? Да/Нет\n')
 
@@ -124,6 +139,7 @@ def main():
         user_choice_filter_for_description = input('').lower()
 
         if user_choice_filter_for_description == filter_for_description_yes:
+            user_choice_filter_for_description_status = input(f'\nВведите строку описания: \n')
             break
         elif user_choice_filter_for_description == filter_for_description_no:
             break
@@ -132,10 +148,22 @@ def main():
 
     print(f'\nРаспечатываю итоговый список транзакций...')
 
+    result_state = filter_by_state(transaction_data, user_choice_filter_status) # Фильтрация по статусу
+    result_sort_date_state = sort_by_date(result_state, descending) # Сортировка по дате и по убывани/возрастанию
+    result_filter_description = search_transaction_data(result_sort_date_state, user_choice_filter_for_description_status)
+    result_only_rub_tr = filter_by_currency(result_filter_description, 'RUB')
 
 
+    # print(result_state)
+    # print(result_sort_date_state)
+    # print(result_only_rub_tr)
+    print(next(result_only_rub_tr))
+    print(next(result_only_rub_tr))
+    print(next(result_only_rub_tr))
+    print(next(result_only_rub_tr))
+    print(next(result_only_rub_tr))
 
-
+# EXECUTED
 
 if __name__ == "__main__":
     categories_operations = [
@@ -159,6 +187,6 @@ if __name__ == "__main__":
     #         new_list.append(el['description'])
     # print("\n".join(map(str, new_list)))
 
-    # print(sorting_operations_category(transaction_data2, categories_operations))
-
+    # print(search_transaction_data(transaction_data2, categories_operations))
+    # print(transaction_data2)
     main()
