@@ -3,9 +3,10 @@ from src.processing import sort_by_date, filter_by_state
 from src.utils import get_financial_transactions, search_transaction_data, sorting_operations_category_and_count
 import os
 
+from src.widget import get_data, mask_account_card
+
 
 def main():
-
     print(f"Привет! Добро пожаловать в программу работы с банковскими транзакциями.")
 
     while True:
@@ -70,9 +71,7 @@ def main():
             )
             continue
 
-
     print(f'Отсортировать операции по дате? Да/Нет\n')
-
 
     while True:
 
@@ -88,7 +87,7 @@ def main():
             is_sort_by_date = False
             break
         else:
-            print(f'\nВыберите Да или Нет\n')
+            print(f'\nВыберите "Да" или "Нет"\n')
 
     is_sort_by_date: bool
 
@@ -108,7 +107,7 @@ def main():
             descending = True
             break
         else:
-            print(f'\nВыберите по возрастанию/по убыванию\n')
+            print(f'\nВыберите "по возрастанию"/"по убыванию"\n')
 
     descending: bool
 
@@ -124,11 +123,11 @@ def main():
         if user_choice_transaction_only_rub == transaction_only_rub_yes:
             is_only_rub_transaction = True
             break
-        elif user_choice_sort_date == transaction_only_rub_no:
+        elif user_choice_transaction_only_rub == transaction_only_rub_no:
             is_only_rub_transaction = False
             break
         else:
-            print(f'\nВыберите Да или Нет\n')
+            print(f'\nВыберите "Да" или "Нет"\n')
 
     is_only_rub_transaction: bool
 
@@ -148,29 +147,47 @@ def main():
             user_choice_filter_for_description_status = ''
             break
         else:
-            print(f'\nВыберите Да или Нет\n')
+            print(f'\nВыберите "Да" или "Нет"\n')
 
-    print(f'\nРаспечатываю итоговый список транзакций...')
-
-    optional_json = ["operationAmount","currency","code"]
-    optional_csv = ['currency_name']
-    optional_xlsx = ['currency_code']
+    print(f'\nРаспечатываю итоговый список транзакций...\n')
 
 
-    result_state = filter_by_state(transaction_data, user_choice_filter_status) # Фильтрация по статусу
-    result_sort_date_state = sort_by_date(result_state, descending) # Сортировка по дате и по убывани/возрастанию
-    result_filter_description = search_transaction_data(result_sort_date_state, user_choice_filter_for_description_status)
-    result_only_rub_tr = filter_by_currency(result_filter_description, is_open_file, 'RUB')
+    result_state = filter_by_state(transaction_data, user_choice_filter_status)  # Фильтрация по статусу
+    result_sort_date_state = sort_by_date(result_state, descending)  # Сортировка по дате и по убывани/возрастанию
+    result = search_transaction_data(result_sort_date_state,
+                                                        user_choice_filter_for_description_status)  # Фильтрует список по фразе в описании
+    if is_only_rub_transaction:
+        result = list(filter_by_currency(result, is_open_file,
+                                            'RUB')) # Только рублевые транзакции
+
+    # print(next(result_only_rub_tr))
+    # print(next(result_only_rub_tr))
+    # print(next(result_only_rub_tr))
+    # print(next(result_only_rub_tr))
+    # print(next(result_only_rub_tr))
+
+    print(f"Всего банковских операций в выборке: {len(result)}\n")
+
+    for res in result:
+        print(get_data(res["date"]), res["description"])
+        if res.get("from") and isinstance(res["from"], str):
+            print(f"{mask_account_card(res['from'])} -> {mask_account_card(res['to'])}\n")
+        else:
+            print(f"{mask_account_card(res['to'])}")
+
+        if is_open_file == 'json':
+            print(f'Сумма: {res["operationAmount"]["amount"]} {res['operationAmount']['currency']['name']}\n')
+
+        elif is_open_file == 'csv' or is_open_file == 'xlsx':
+            print(f'Сумма: {res["amount"]} {res['currency_name']}\n')
 
 
-    # print(result_state)
-    # print(result_sort_date_state)
-    # print(result_only_rub_tr)
-    print(next(result_only_rub_tr))
-    print(next(result_only_rub_tr))
-    print(next(result_only_rub_tr))
-    print(next(result_only_rub_tr))
-    print(next(result_only_rub_tr))
+
+    if not result:
+        print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
+
+
+
 
 # EXECUTED
 
@@ -187,7 +204,7 @@ if __name__ == "__main__":
     # transaction_data = get_financial_transactions("operations.json")
     # transaction_data1 = get_financial_transactions("transactions.csv")
     # transaction_data2 = get_financial_transactions("transactions_excel.xlsx")
-    # print(transaction_data1)
+    # print(transaction_data2)
 
     # input_user = input("Введите слово для поиска: ")
     # print(search_transaction_data(transaction_data, input_user))

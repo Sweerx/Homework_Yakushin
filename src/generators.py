@@ -17,7 +17,7 @@ def filter_by_currency(transactions: list, is_open_file: str, currency: str) -> 
                 yield transaction
     elif is_open_file == 'xlsx':
         for transaction in transactions:
-            if transaction['currency_code'] == currency:
+            if transaction['currency_name'] == currency:
                 yield transaction
 
 
