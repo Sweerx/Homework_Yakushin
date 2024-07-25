@@ -7,17 +7,17 @@ def filter_by_currency(transactions: list, is_open_file: str, currency: str) -> 
     (или объект-генератор, который выдает по одной банковской операции)
      и возвращает итератор, который выдает по очереди операции, в которых указана заданная валюта.
     """
-    if is_open_file == 'json':
+    if is_open_file == "json":
         for transaction in transactions:
             if transaction["operationAmount"]["currency"]["code"] == currency:
                 yield transaction
-    elif is_open_file == 'csv':
+    elif is_open_file == "csv":
         for transaction in transactions:
-            if transaction['currency_name'] == currency:
+            if transaction["currency_name"] == currency:
                 yield transaction
-    elif is_open_file == 'xlsx':
+    elif is_open_file == "xlsx":
         for transaction in transactions:
-            if transaction['currency_name'] == currency:
+            if transaction["currency_name"] == currency:
                 yield transaction
 
 
