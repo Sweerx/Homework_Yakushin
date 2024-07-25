@@ -23,16 +23,19 @@ def main():
         user_file_choice = input(f"Введи необходимый пункт: ").strip()
         if user_file_choice == file_transaction_json:
             transaction_data = get_financial_transactions("operations.json")
+            is_open_file = "json"
             print(f"\nДля обработки выбран JSON-файл\n")
             break
 
         elif user_file_choice == file_transaction_csv:
             transaction_data = get_financial_transactions("transactions.csv")
+            is_open_file = "csv"
             print(f"\nДля обработки выбран CSV-файл\n")
             break
 
         elif user_file_choice == file_transaction_xlsx:
             transaction_data = get_financial_transactions("transactions_excel.xlsx")
+            is_open_file = "xlsx"
             print(f"\nДля обработки выбран XLSX-файл\n")
             break
 
@@ -142,16 +145,22 @@ def main():
             user_choice_filter_for_description_status = input(f'\nВведите строку описания: \n')
             break
         elif user_choice_filter_for_description == filter_for_description_no:
+            user_choice_filter_for_description_status = ''
             break
         else:
             print(f'\nВыберите Да или Нет\n')
 
     print(f'\nРаспечатываю итоговый список транзакций...')
 
+    optional_json = ["operationAmount","currency","code"]
+    optional_csv = ['currency_name']
+    optional_xlsx = ['currency_code']
+
+
     result_state = filter_by_state(transaction_data, user_choice_filter_status) # Фильтрация по статусу
     result_sort_date_state = sort_by_date(result_state, descending) # Сортировка по дате и по убывани/возрастанию
     result_filter_description = search_transaction_data(result_sort_date_state, user_choice_filter_for_description_status)
-    result_only_rub_tr = filter_by_currency(result_filter_description, 'RUB')
+    result_only_rub_tr = filter_by_currency(result_filter_description, is_open_file, 'RUB')
 
 
     # print(result_state)
@@ -166,6 +175,7 @@ def main():
 # EXECUTED
 
 if __name__ == "__main__":
+
     categories_operations = [
         "Перевод организации",
         "Перевод с карты на карту",
@@ -177,6 +187,7 @@ if __name__ == "__main__":
     # transaction_data = get_financial_transactions("operations.json")
     # transaction_data1 = get_financial_transactions("transactions.csv")
     # transaction_data2 = get_financial_transactions("transactions_excel.xlsx")
+    # print(transaction_data1)
 
     # input_user = input("Введите слово для поиска: ")
     # print(search_transaction_data(transaction_data, input_user))
