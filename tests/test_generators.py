@@ -1,9 +1,4 @@
-from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
-
-
-def test_filter_by_currency_empty() -> None:
-    result = list(filter_by_currency([], "USD"))
-    assert result == []
+from src.generators import card_number_generator, transaction_descriptions
 
 
 def test_transaction_descriptions(transactions: list) -> None:

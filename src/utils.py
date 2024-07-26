@@ -2,6 +2,8 @@ import csv
 import json
 import logging
 import os
+import re
+from collections import Counter
 
 import pandas as pd
 
@@ -43,12 +45,13 @@ def get_financial_transactions(file_name: str) -> list:
             elif file_name.endswith(".xlsx"):
                 logger.info(f"Файл {file_name} формата .xlsx")
                 transaction = pd.read_excel(os.path.join("data/", file_name))
-                list_id_name = transaction.columns.to_list()
+                list_id_name = transaction.columns.to_list()  # преобразовали в список
                 list_for_transaction = []
                 for idx, row in transaction.iterrows():
                     transaction_dict = {}
                     for i, el in enumerate(row):
                         transaction_dict[list_id_name[i]] = el
+                        # print(transaction_dict)
                     list_for_transaction.append(transaction_dict)
                 logger.info(f"Файл {file_name} прочитан и преобразуется в список с вложенными словарями")
                 return list_for_transaction
@@ -59,3 +62,31 @@ def get_financial_transactions(file_name: str) -> list:
     except FileNotFoundError:
         logger.error(f"Файл {file_name} не найден")
         return []
+
+
+def search_transaction_data(transactions: list, search_string: str) -> list:
+    """Функция принимает список словарей с данными о банковских операциях и строку поиска,
+    а возвращает список словарей, у которых в описании есть данная строка."""
+    result = []
+    for transaction in transactions:
+        if "description" in transaction and re.search(search_string.lower(), str(transaction["description"]).lower()):
+            result.append(transaction)
+    return result
+
+
+def sorting_operations_category_and_count(transactions: list, categories: list) -> dict:
+    """
+    Функция принимает список словарей с данными о банковских операциях и список категорий операций,
+    и возвращает словарь - категория: количество операций.
+    """
+    list_result = []
+    for transaction in transactions:
+        list_result.append(transaction.get("description"))
+    dict_result = {}
+    count = Counter(list_result)
+    for el in count:
+        if el is None or el == "":
+            continue
+        else:
+            dict_result[el] = count[el]
+    return dict_result

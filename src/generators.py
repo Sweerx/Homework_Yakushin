@@ -1,15 +1,24 @@
 from typing import Generator
 
 
-def filter_by_currency(transactions: list, currency: str) -> Generator:
+def filter_by_currency(transactions: list, is_open_file: str, currency: str) -> Generator:
     """
     Функция которая принимает список словарей с банковскими операциями
     (или объект-генератор, который выдает по одной банковской операции)
      и возвращает итератор, который выдает по очереди операции, в которых указана заданная валюта.
     """
-    for transaction in transactions:
-        if transaction["operationAmount"]["currency"]["code"] == currency:
-            yield transaction
+    if is_open_file == "json":
+        for transaction in transactions:
+            if transaction["operationAmount"]["currency"]["code"] == currency:
+                yield transaction
+    elif is_open_file == "csv":
+        for transaction in transactions:
+            if transaction["currency_name"] == currency:
+                yield transaction
+    elif is_open_file == "xlsx":
+        for transaction in transactions:
+            if transaction["currency_name"] == currency:
+                yield transaction
 
 
 def transaction_descriptions(transactions: list) -> Generator:
@@ -37,7 +46,3 @@ def card_number_generator(start: int, end: int) -> Generator:
 
         block_number = f"{numbers[:4]} {numbers[4:8]} {numbers[8:12]} {numbers[12:16]}"
         yield block_number
-
-
-for card_number in card_number_generator(5436334, 5436330):
-    print(card_number)
